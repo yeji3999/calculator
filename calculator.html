@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>계산기</title>
+  <style>
+    table {
+      background: #EBEBEB;
+      width: 505px;
+      height: 503px;
+      box-shadow: 0px 0px 15px rgba(110, 110, 110, 0.5);
+      border-spacing: 3px;
+      margin: auto;
+    }
+    td {
+      text-align: center;
+      width: 25%;
+    }
+    #result {
+      text-align: right;
+      width: 97%;
+      height: 50px;
+      font-size: 40px;
+      font-weight: bold;
+      background: #EBEBEB;
+      border: none;
+      padding: 0px;
+      margin: 0px;
+    }
+    #top,
+    #topx {
+      border: none;
+      padding: 0px;
+      margin: 0px;
+      height: 30px;
+      background: #EBEBEB;
+    }
+    #topx {
+      width: 40px;
+      float: right;
+    }
+    #topx:hover {
+      background: #E81123;
+      color: white;
+    }
+    .op {
+      background: #F4F4F4;
+      font-size: 23px;
+    }
+    .xop {
+      background: #F4F4F4;
+      font-size: 14px;
+    }
+    .num {
+      background: #FBFBFB;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .xop:hover,
+    .op:hover,
+    .num:hover {
+      background: lightgray;
+      box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+    }
+    #re {
+      background: #8CBCE2;
+      font-size: 27px;
+    }
+    #re:hover {
+      background: #479BDD;
+      box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+    }
+  </style>
+
+  <script>
+    function add(s) {
+      result.value += s;
+    }
+    function remove() {
+      result.value = result.value.substring(0, result.value.length - 1);
+    }
+
+    function calculate() {
+
+      var cal_result = eval(result.value);
+      result.value =  cal_result;
+    }
+
+    function reset() {
+      document.getElementById('result').value = "";
+    }
+
+    function WinClose() {
+      window.close();
+    }
+  </script>
+</head>
+<body>
+  <article>
+    <table>
+      <tr>
+        <td colspan="4" id="top">
+          <input type="button" name="close" value="X" id="topx" onclick="WinClose()">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <input type="text" id="result" placeholder="0">
+        </td>
+      </tr>
+
+      <tr>
+        <td onclick="add('%')" class="xop">%</td>
+        <td class="xop">CE</td>
+        <td onclick="reset('C')" class="xop">C</td>
+        <td onclick="remove()" class="op">←</td>
+      </tr>
+
+      <tr>
+        <td class="xop">1/𝒳</td>
+        <td class="xop">𝒳<sup>2</sup></td>
+        <td class="xop"><sup>2</sup>&radic;𝒳</td>
+        <td onclick="add('/')" class="op">÷</td>
+      </tr>
+
+      <tr>
+        <td onclick="add(7)" class="num">7</td>
+        <td onclick="add(8)" class="num">8</td>
+        <td onclick="add(9)" class="num">9</td>
+        <td onclick="add('*')" class="op">×</td>
+      </tr>
+
+      <tr>
+        <td onclick="add(4)" class="num">4</td>
+        <td onclick="add(5)" class="num">5</td>
+        <td onclick="add(6)" class="num">6</td>
+        <td onclick="add('-')" class="op">-</td>
+      </tr>
+
+      <tr>
+        <td onclick="add(1)" class="num">1</td>
+        <td onclick="add(2)" class="num">2</td>
+        <td onclick="add(3)" class="num">3</td>
+        <td onclick="add('+')" class="op">+</td>
+      </tr>
+
+      <tr>
+        <td class="num">+/-</td>
+        <td onclick="add(0)" class="num">0</td>
+        <td onclick="add('.')" class="num">.</td>
+        <td onclick="calculate()" id="re">=</td>
+      </tr>
+    </table>
+  </article>
+</body>
+</html>

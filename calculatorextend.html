@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    html,article{
+      width:100%;
+      height:100%;
+    }
+    table {
+      background: #EBEBEB;
+      width: 500px;
+      height: 600px;
+      box-shadow: 0px 0px 15px rgba(110, 110, 110, 0.5);
+    }
+
+    td {
+      text-align: center;
+      width: 25%;
+    }
+    #result {
+      text-align: right;
+      width: 97%;
+      height: 50px;
+      font-size: 40px;
+      font-weight: bold;
+      background: #EBEBEB;
+      border: none;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    #top,
+    #topx,
+    #tope,
+    #topn {
+      border: none;
+      padding: 0px;
+      margin: 0px;
+      height: 30px;
+      background: #EBEBEB;
+    }
+
+    #topx {
+      width: 40px;
+      float: right;
+      font-size: 20px;
+    }
+
+    #tope,
+    #topn,
+    #txt {
+      width: 40px;
+      float: left;
+    }
+
+    #topx:hover {
+      background: #E81123;
+      color: white;
+    }
+
+    #tope:hover,
+    #topn:hover {
+      background: lightgray;
+    }
+
+    #txt {
+      line-height: 30px;
+    }
+
+    .op {
+      background: #F4F4F4;
+      font-size: 23px;
+
+    }
+
+    .xop {
+      background: #F4F4F4;
+      font-size: 14px;
+
+    }
+
+    .xop:hover,
+    .op:hover {
+      background: lightgray;
+      box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+    }
+
+    .num {
+      background: #FBFBFB;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .num:hover {
+      background: lightgray;
+      box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+    }
+
+    #re {
+      background: #8CBCE2;
+      font-size: 27px;
+    }
+
+    #re:hover {
+      background: #479BDD;
+      box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+    }
+
+    #mid {
+      text-align: left;
+    }
+
+    .mid {
+
+      width: 50px;
+      height: 40px;
+      margin: 0px;
+      padding: 0px;
+      font-weight: bold;
+      display: inline;
+    }
+
+    .mid>input {
+      border: none;
+      width: 50px;
+      height: 40px;
+      background: #EBEBEB;
+    }
+
+    .mid>input:hover {
+      background: lightgray;
+    }
+  </style>
+
+  <script>
+    function add(char) {
+      document.getElementById('result').value += char; // 식 뒤에 값을 추가한다.
+    }
+
+    function remove() {
+      result.value = result.value.substring(0, result.value.length - 1);
+    }
+
+    function calculate() {
+
+      var cal_result = eval(result.value);
+      document.getElementById('result').value = cal_result;
+    }
+
+    function reset() {
+      document.getElementById('result').value = "";
+    }
+
+    function WinClose() {
+      window.open('', '_self').close();
+    }
+
+    function WinExtend() {
+      var display_m = document.getElementById("mid");
+      if (display_m.style.display == '') {
+        display_m.style.display = 'none';
+      } else {
+        display_m.style.display = '';
+      }
+
+      var display_t = document.getElementById("topn");
+      if (display_t.style.display == '') {
+        display_t.style.display = 'none';
+      } else {
+        display_t.style.display = '';
+      }
+
+      var txt = document.getElementById("txt");
+      if (txt.style.display == '') {
+        txt.style.display = 'none';
+      } else {
+        txt.style.display = '';
+      }
+
+    }
+  </script>
+</head>
+
+<body>
+  <article>
+    <table cellspacing="3px">
+      <caption>계산기</caption>
+
+      <tr>
+        <td colspan="4" id="top">
+          <input type="button" name="nav" value="≡" id="topn">
+          <span id=txt>표준</span>
+          <input type="button" name="extend" value="E" id="tope" onclick="WinExtend()">
+          <input type="button" name="close" value="X" id="topx" onclick="WinClose()">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" style=border:none;>
+          <input type="text" id="result" value="0">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" id="mid">
+          <div class="mid">
+            <input type="button" name="MC" value="MC" style=color:#BABABA;>
+            <input type="button" name="MR" value="MR" style=color:#BABABA;>
+            <input type="button" name="M+" value="M+">
+            <input type="button" name="M-" value="M-">
+            <input type="button" name="MS" value="MS">
+          </div>
+      </tr>
+      <tr>
+        <td onclick="add('%')"b class="xop">%</td>
+        <td onclick="reset('CE')" class="xop">CE</td>
+        <td onclick="reset('C')" class="xop">C</td>
+        <td onclick="remove()" class="op">←</td>
+      </tr>
+
+      <tr>
+        <td class="xop">1/𝒳</td>
+        <td class="xop">𝒳<sup>2</sup></td>
+        <td class="xop"><sup>2</sup>&radic;𝒳</td>
+        <td onclick="add('/')" class="op">÷</td>
+      </tr>
+
+      <tr>
+        <td onclick="add(7)" class="num">7</td>
+        <td onclick="add(8)" class="num">8</td>
+        <td onclick="add(9)" class="num">9</td>
+        <td onclick="add('*')" class="op">×</td>
+      </tr>
+
+      <tr>
+        <td onclick="add(4)" class="num">4</td>
+        <td onclick="add(5)" class="num">5</td>
+        <td onclick="add(6)" class="num">6</td>
+        <td onclick="add('-')" class="op">-</td>
+      </tr>
+
+      <tr>
+        <td onclick="add(1)" class="num">1</td>
+        <td onclick="add(2)" class="num">2</td>
+        <td onclick="add(3)" class="num">3</td>
+        <td onclick="add('+')" class="op">+</td>
+      </tr>
+
+      <tr>
+        <td class="num">+/-</td>
+        <td onclick="add(0)" class="num">0</td>
+        <td onclick="add('.')" class="num">.</td>
+        <td onclick="calculate()" id="re">=</td>
+      </tr>
+
+    </table>
+
+
+
+
+  </article>
+
+
+</body>
+
+</html>
